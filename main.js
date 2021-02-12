@@ -1,15 +1,16 @@
 const inputs = document.querySelector('.inputs')
 const size = document.getElementById('size')
 const btn = document.querySelector('.btn')
+const btn2 = document.querySelector("#reset")
 const msg = document.querySelector('.msg')
 const vis = document.querySelector('.visualiser')
-
+ 
 let values = [];
 
 btn.addEventListener('click',() => {
     if(size.value=="" || size.value>180 || size.value<1){ 
         let nm = document.createElement('p');
-        nm.innerText = (size.value=="")?"Enter correct value..":"Enter a value b/w 1 to 180";
+        nm.innerText = (size.value=="")?"Enter correct value..":"Range: 1 to 180";
         msg.appendChild(nm)
         setTimeout(() => {
             nm.remove();
@@ -17,8 +18,9 @@ btn.addEventListener('click',() => {
     }
     else{
         inputs.classList.add('hide');
+        btn2.classList.remove('hide');
         start();
-    }
+    } 
 })
 
 document.addEventListener('keydown', e => {
@@ -28,6 +30,10 @@ document.addEventListener('keydown', e => {
         btn.click();
     }
 });
+
+btn2.addEventListener('click', () => {
+    location.reload();
+}) 
 
 function start(){
     for(let i=0;i<size.value;++i){
