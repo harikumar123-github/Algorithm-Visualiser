@@ -10,7 +10,7 @@ let values = [];
 btn.addEventListener('click',() => {
     if(size.value=="" || size.value>180 || size.value<1){ 
         let nm = document.createElement('p');
-        nm.innerText = (size.value=="")?"Enter correct value..":"Range: 1 to 180";
+        nm.innerText = (size.value=="")?"Please enter correct value..":"Enter a value from 1 to 180";
         msg.appendChild(nm)
         setTimeout(() => {
             nm.remove();
@@ -20,29 +20,28 @@ btn.addEventListener('click',() => {
         inputs.classList.add('hide');
         btn2.classList.remove('hide');
         start();
-    } 
+    }
 })
 
 document.addEventListener('keydown', e => {
     if(e.keyCode === 13 && !(inputs.classList.contains('hide')) ){
         e.preventDefault();
-        console.log('Enter');
         btn.click();
     }
 });
 
 btn2.addEventListener('click', () => {
     location.reload();
-}) 
+})
 
 function start(){
     for(let i=0;i<size.value;++i){
         values.push(Math.floor(Math.random()*630+1));
-        let nd = document.createElement('div');
-        nd.className = 'bar';
-        nd.style.height = `${values[i]}px`
-        nd.style.width = '8px'
-        vis.appendChild(nd);
+        let newDiv = document.createElement('div');
+        newDiv.className = 'bar';
+        newDiv.style.height = `${values[i]}px`
+        newDiv.style.width = '8px'
+        vis.appendChild(newDiv);
     }
     startSort();
 }
@@ -69,8 +68,4 @@ async function startSort(){
         }
         bars[i].style.backgroundColor = 'lightblue';
     }
-    console.log(values)
 }
-
-
-
